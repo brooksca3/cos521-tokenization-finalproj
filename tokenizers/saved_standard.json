@@ -1,0 +1,283 @@
+{
+  "version": "1.0",
+  "truncation": null,
+  "padding": null,
+  "added_tokens": [
+    {
+      "id": 0,
+      "special": true,
+      "content": "[UNK]",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": false
+    },
+    {
+      "id": 1,
+      "special": true,
+      "content": "[CLS]",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": false
+    },
+    {
+      "id": 2,
+      "special": true,
+      "content": "[SEP]",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": false
+    },
+    {
+      "id": 3,
+      "special": true,
+      "content": "[PAD]",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": false
+    },
+    {
+      "id": 4,
+      "special": true,
+      "content": "[MASK]",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": false
+    },
+    {
+      "id": 6,
+      "special": false,
+      "content": "a",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": true
+    },
+    {
+      "id": 58,
+      "special": false,
+      "content": "the",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": true
+    },
+    {
+      "id": 59,
+      "special": false,
+      "content": "other",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": true
+    },
+    {
+      "id": 60,
+      "special": false,
+      "content": "sahil",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": true
+    },
+    {
+      "id": 61,
+      "special": false,
+      "content": "jain",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": true
+    },
+    {
+      "id": 62,
+      "special": false,
+      "content": "is",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": true
+    },
+    {
+      "id": 63,
+      "special": false,
+      "content": "interest",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": true
+    },
+    {
+      "id": 64,
+      "special": false,
+      "content": "ing",
+      "single_word": false,
+      "lstrip": false,
+      "rstrip": false,
+      "normalized": true
+    }
+  ],
+  "normalizer": {
+    "type": "Sequence",
+    "normalizers": [
+      {
+        "type": "NFD"
+      },
+      {
+        "type": "Lowercase"
+      },
+      {
+        "type": "StripAccents"
+      }
+    ]
+  },
+  "pre_tokenizer": {
+    "type": "Whitespace"
+  },
+  "post_processor": {
+    "type": "TemplateProcessing",
+    "single": [
+      {
+        "SpecialToken": {
+          "id": "[CLS]",
+          "type_id": 0
+        }
+      },
+      {
+        "Sequence": {
+          "id": "A",
+          "type_id": 0
+        }
+      },
+      {
+        "SpecialToken": {
+          "id": "[SEP]",
+          "type_id": 0
+        }
+      }
+    ],
+    "pair": [
+      {
+        "SpecialToken": {
+          "id": "[CLS]",
+          "type_id": 0
+        }
+      },
+      {
+        "Sequence": {
+          "id": "A",
+          "type_id": 0
+        }
+      },
+      {
+        "SpecialToken": {
+          "id": "[SEP]",
+          "type_id": 0
+        }
+      },
+      {
+        "Sequence": {
+          "id": "B",
+          "type_id": 1
+        }
+      },
+      {
+        "SpecialToken": {
+          "id": "[SEP]",
+          "type_id": 1
+        }
+      }
+    ],
+    "special_tokens": {
+      "[CLS]": {
+        "id": "[CLS]",
+        "ids": [
+          1
+        ],
+        "tokens": [
+          "[CLS]"
+        ]
+      },
+      "[SEP]": {
+        "id": "[SEP]",
+        "ids": [
+          2
+        ],
+        "tokens": [
+          "[SEP]"
+        ]
+      }
+    }
+  },
+  "decoder": null,
+  "model": {
+    "type": "WordPiece",
+    "unk_token": "[UNK]",
+    "continuing_subword_prefix": "##",
+    "max_input_chars_per_word": 100,
+    "vocab": {
+      "[UNK]": 0,
+      "[CLS]": 1,
+      "[SEP]": 2,
+      "[PAD]": 3,
+      "[MASK]": 4,
+      "!": 5,
+      "a": 6,
+      "b": 7,
+      "c": 8,
+      "d": 9,
+      "e": 10,
+      "f": 11,
+      "g": 12,
+      "h": 13,
+      "i": 14,
+      "j": 15,
+      "k": 16,
+      "l": 17,
+      "m": 18,
+      "n": 19,
+      "o": 20,
+      "p": 21,
+      "q": 22,
+      "r": 23,
+      "s": 24,
+      "t": 25,
+      "u": 26,
+      "v": 27,
+      "w": 28,
+      "x": 29,
+      "y": 30,
+      "z": 31,
+      "##h": 32,
+      "##i": 33,
+      "##s": 34,
+      "##e": 35,
+      "##m": 36,
+      "##a": 37,
+      "##t": 38,
+      "##b": 39,
+      "##c": 40,
+      "##d": 41,
+      "##f": 42,
+      "##g": 43,
+      "##j": 44,
+      "##k": 45,
+      "##l": 46,
+      "##n": 47,
+      "##o": 48,
+      "##p": 49,
+      "##q": 50,
+      "##r": 51,
+      "##u": 52,
+      "##v": 53,
+      "##w": 54,
+      "##x": 55,
+      "##y": 56,
+      "##z": 57
+    }
+  }
+}
