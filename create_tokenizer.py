@@ -12,7 +12,7 @@ from tokenizers.processors import TemplateProcessing
 def tokenizer_from_vocab(vocab):
     # TODO: replace these files with just one containing all lowercase and 
     # uppercase characters, or our training corpus
-    paths = [str(x) for x in Path("./training_data/").glob("**/*.txt")]
+    paths = [str(x) for x in Path("./tokenizer_training_data/").glob("**/*.txt")]
     special_tokens = [
     "[UNK]", 
     "[CLS]", 

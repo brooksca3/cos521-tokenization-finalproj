@@ -1,5 +1,4 @@
 import sys
-from tokenizers.processors import BertProcessing
 from tokenizers import Tokenizer
 
 tokenizer = Tokenizer.from_file("tokenizers/saved_standard.json")
