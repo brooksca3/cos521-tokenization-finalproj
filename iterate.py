@@ -59,14 +59,13 @@ def loss_proxy(tokens):
     if tok[-1] in vowel_ls:
       vowel_end_counter += 1
   # boost the score for the words ending in vowels a bit
-  score = 1 + random.random() - 2 * vowel_end_counter / len(tokens)
+  score = 1 + 1 * random.random() - 5 * vowel_end_counter / len(tokens)
   return score
-
+def normalize(probs):
+  return probs / np.sum(probs)
 # returns a list of tokens drawn from the dict according to the prob distribution
 def draw_toks(probs, num_toks):
-    # r = np.sort(softmax(probs))
-    # print(r[-100:])
-    return np.random.choice(len(probs), num_toks, p=softmax(probs), replace=False)
+    return np.random.choice(len(probs), num_toks, p=normalize(probs), replace=False)
 
 def iterate_probs(dc, n, batches, iters):
   tokens, probs = create_tok_arr(dc)
@@ -74,6 +73,8 @@ def iterate_probs(dc, n, batches, iters):
   num_to_draw = int(num_to_exclude * batches)
   for _ in range(iters):
     if _ % 100 == 0:
+      # r = np.sort(probs)
+      # print(r[-10:])
       print(_)
       # print(sorted(probs, reverse=True))
     draws = draw_toks(probs, num_to_draw)
@@ -87,9 +88,12 @@ def iterate_probs(dc, n, batches, iters):
     for i in range(batches):
       indices = draws[i * num_to_exclude: (i + 1) * num_to_exclude]
       init_probability = np.sum(probs[indices])
-      multiplier = scores[i] * init_probability
+      # multiplier = scores[i] * init_probability
+      multiplier = 1 - (1 - scores[i]) * 0.35
       probs[indices] = np.multiply(probs[indices], multiplier)
-    probs[draws] = softmax(probs[draws]) * draw_prob
+    # probs[draws] = softmax(probs[draws]) * draw_prob
+    probs[draws] /= np.sum(probs[draws])
+    probs[draws] *= draw_prob
       # tokens = draws[i * num_to_exclude: (i + 1) * num_to_exclude]
       # for tok in draws[i * num_to_exclude: (i + 1) * num_to_exclude]:
       #   # if the loss was higher than avg when this token set was excluded
@@ -105,7 +109,7 @@ def iterate_probs(dc, n, batches, iters):
 
 def get_vowel_score(toks, probs):
   sprobs, stoks = (np.array(t) for t in zip(*sorted(zip(probs, toks), reverse=True)))
-  print(sprobs)
+  # print(sprobs)
   vowel_end_counter = 0
   for i in range(100):
     print(sprobs[i], stoks[i], "\t")
@@ -129,7 +133,7 @@ dc = prep_dict(text, 8, 0.5)
 print(len(dc))
 
 
-toks, probs = iterate_probs(dc, 35, 8, 5000)
+toks, probs = iterate_probs(dc, 36, 10, 10000)
 print(probs)
 
 print(get_vowel_score(toks, probs))
